@@ -17,10 +17,14 @@ namespace AwsDotnetCsharp
     {
       try
       {
-        Console.WriteLine($"env - {System.Environment.GetEnvironmentVariable("CLIENT_ID")}");
-        string newToken = await new TokenGenerator().Generate();
+        var tokenGenerator = new TokenGenerator();
+        string newToken = await tokenGenerator.Generate();
         context.Logger.Log(newToken);
-        return true;
+        if (!string.IsNullOrWhiteSpace(newToken))
+        {
+          return await tokenGenerator.Store(newToken);
+        }
+        return false;
       }
       catch (Exception e)
       {
@@ -35,12 +39,21 @@ namespace AwsDotnetCsharp
     class Auth0SecretsResponse
     {
       [JsonProperty("CLIENT_ID")]
-      string clientId { get; set; }
+      public string clientId { get; set; }
       [JsonProperty("CLIENT_SECRET")]
-      string clientSecret { get; set; }
+      public string clientSecret { get; set; }
+    }
+
+    class JWTRequest
+    {
+      [JsonProperty("GENERATED_AT")]
+      public string generatedAt { get; set; }
+      [JsonProperty("BEARER_TOKEN")]
+      public string bearerToken { get; set; }
     }
 
     const string AUTH0_SECRET_NAME = "auth0-secrets-demo";
+    const string TOKEN_SECRET_NAME = "service-token-demo";
     private static string Auth0URL
     {
       get
@@ -66,8 +79,8 @@ namespace AwsDotnetCsharp
       request.SetMethod(Method.POST);
       var bodyString = JsonConvert.SerializeObject(new
       {
-        client_id = TokenGenerator.auth0Secrets.clientId,
-        client_secret = TokenGenerator.auth0Secrets.clientSecret,
+        client_id = auth0Secrets.clientId,
+        client_secret = auth0Secrets.clientSecret,
         audience = TokenGenerator.Auth0Audience,
         grant_type = "client_credentials"
       });
@@ -87,6 +100,16 @@ namespace AwsDotnetCsharp
           throw new ApplicationException("Failed to get JWT from Auth0");
         }
       }
+    }
+
+    public async Task<bool> Store(string jwt)
+    {
+      var content = new JWTRequest
+      {
+        generatedAt = DateTime.UtcNow.ToString(),
+        bearerToken = $"Bearer {jwt}"
+      };
+      return await SecretsManagerWrapper.SetSecret<JWTRequest>(TOKEN_SECRET_NAME, content);
     }
   }
 }
