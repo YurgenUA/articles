@@ -13,15 +13,19 @@ namespace AwsDotnetCsharp
 {
   public class Handler
   {
+    // entry point for rotation Lambda
     public async Task<bool> Handle(object request, ILambdaContext context)
     {
       try
       {
         var tokenGenerator = new TokenGenerator();
+        // 1. get fresh token
         string newToken = await tokenGenerator.Generate();
         context.Logger.Log(newToken);
         if (!string.IsNullOrWhiteSpace(newToken))
         {
+        context.Logger.Log("Storing token...");
+          // 2. store fresh token into AWS Secrets Service.
           return await tokenGenerator.Store(newToken);
         }
         return false;
@@ -36,6 +40,18 @@ namespace AwsDotnetCsharp
 
   public class TokenGenerator
   {
+    // POCO class used to parse response from Auth0 API 
+    class Auth0Response
+    {
+      [JsonProperty("access_token")]
+      public string accessToken { get; set; }
+      [JsonProperty("expires_in")]
+      public string expiresIn { get; set; }
+      [JsonProperty("token_type")]
+      public string tokenType { get; set; }
+    }
+
+    // POCO class used to parse response from AWS Secrets Manager with Auth0 credentials 
     class Auth0SecretsResponse
     {
       [JsonProperty("CLIENT_ID")]
@@ -44,7 +60,8 @@ namespace AwsDotnetCsharp
       public string clientSecret { get; set; }
     }
 
-    class JWTRequest
+    class JWTSecretsRequest
+    // POCO class used to send fresh token to AWS Secrets Manager 
     {
       [JsonProperty("GENERATED_AT")]
       public string generatedAt { get; set; }
@@ -95,7 +112,8 @@ namespace AwsDotnetCsharp
           {
             string responseString = await response.ReadResponseAsStringAsync();
             Console.WriteLine(responseString);
-            return responseString;
+            var responseObject = JsonConvert.DeserializeObject<Auth0Response>(responseString);
+            return responseObject.accessToken;
           }
           throw new ApplicationException("Failed to get JWT from Auth0");
         }
@@ -104,12 +122,12 @@ namespace AwsDotnetCsharp
 
     public async Task<bool> Store(string jwt)
     {
-      var content = new JWTRequest
+      var content = new JWTSecretsRequest
       {
         generatedAt = DateTime.UtcNow.ToString(),
         bearerToken = $"Bearer {jwt}"
       };
-      return await SecretsManagerWrapper.SetSecret<JWTRequest>(TOKEN_SECRET_NAME, content);
+      return await SecretsManagerWrapper.SetSecret<JWTSecretsRequest>(TOKEN_SECRET_NAME, content);
     }
   }
 }

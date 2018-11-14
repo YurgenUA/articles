@@ -14,10 +14,14 @@ namespace AwsDotnetCsharp
   {
     private static readonly string region = "eu-west-1";
 
+    //////////////////
+    // Return secret object from AWS Secret
+    //////////////////
     public async static Task<T> GetSecret<T>(string secretName)
     {
       MemoryStream memoryStream = new MemoryStream();
 
+      // Accessing AWS Secrets Manager
       IAmazonSecretsManager client = new AmazonSecretsManagerClient(RegionEndpoint.GetBySystemName(SecretsManagerWrapper.region));
 
       GetSecretValueRequest request = new GetSecretValueRequest();
@@ -27,6 +31,7 @@ namespace AwsDotnetCsharp
       GetSecretValueResponse response = null;
       string secret = String.Empty;
 
+      // make request
       response = await client.GetSecretValueAsync(request);
       if (response.SecretString != null)
       {
@@ -37,20 +42,25 @@ namespace AwsDotnetCsharp
       throw new ApplicationException($"Failed type in AWS Secret {secretName}");
     }
 
+    //////////////////
+    // Store secret object to AWS Secret
+    //////////////////
      public async static Task<bool> SetSecret<T>(string secretName, T secretObject)
     {
       MemoryStream memoryStream = new MemoryStream();
-
+      // Accessing AWS Secrets Manager
       IAmazonSecretsManager client = new AmazonSecretsManagerClient(RegionEndpoint.GetBySystemName(SecretsManagerWrapper.region));
-
-      PutSecretValueRequest request = new PutSecretValueRequest();
-      request.SecretId = secretName;
 
       // store sectret as JSON string
       var sectedAsJson = JsonConvert.SerializeObject(secretObject);
-      PutSecretValueResponse response = null;
-      string secret = String.Empty;
 
+      PutSecretValueRequest request = new PutSecretValueRequest();
+      request.SecretId = secretName;
+      request.SecretString = sectedAsJson;
+
+      PutSecretValueResponse response = null;
+
+      // make store request
       response = await client.PutSecretValueAsync(request);
       return response.ContentLength > 0;
     }
