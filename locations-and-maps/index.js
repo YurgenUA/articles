@@ -3,7 +3,9 @@ const etc = require("./etc");
 const deliveryDetails = require("./delivery-details");
 const { waypoints } = require("./delivery-details");
 
-AWS.config.update({ region: 'eu-west-1' });
+AWS.config.update({
+  region: process.env.AWS_REGION || 'eu-west-1'
+});
 
 
 const location = new AWS.Location({
