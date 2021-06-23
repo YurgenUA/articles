@@ -1,6 +1,12 @@
 ### Repo with source code to my articles on medium.com
 
 <details>
+  <summary>Delivery route calculation with Amazon Location Service.</summary>
+  <p>[**locations-and-maps**](locations-and-maps)<br>
+  https://fenyuk.medium.com/delivery-route-calculation-with-amazon-location-service-4c346f49fafd</p>
+</details>
+
+<details>
   <summary>AWS DynamoDB. Access capacity and service throttling.</summary>
   <p>[**throttling**](throttling)<br>
   https://medium.com/@fenyuk/aws-dynamodb-access-capacity-and-service-throttling-1ddd75b6a189</p>
