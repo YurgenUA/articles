@@ -1,0 +1,66 @@
+{
+  "StartAt": "Check Stock Price",
+  "States": {
+    "Check Stock Price": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:eu-west-1:617039909058:function:StepFunctionsSample-HelloLam-CheckStockPriceLambda-4rX9kuEoiXcq",
+      "Next": "Generate Buy/Sell recommendation"
+    },
+    "Generate Buy/Sell recommendation": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:eu-west-1:617039909058:function:StepFunctionsSample-Hello-GenerateBuySellRecommend-GsJgE7VBgZgI",
+      "ResultPath": "$.recommended_type",
+      "Next": "Buy or Sell?"
+    },
+    "Buy or Sell?": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.recommended_type",
+          "StringEquals": "buy",
+          "Next": "Exceed budget?"
+        },
+        {
+          "Variable": "$.recommended_type",
+          "StringEquals": "sell",
+          "Next": "Sell Stock"
+        }
+      ]
+    },
+    "Exceed budget?": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.stock_price",
+          "NumericGreaterThanEquals": 20,
+          "Next": "Budget restriction"
+        }
+      ],
+      "Default": "Buy Stock"
+    },
+    "Budget restriction": {
+      "Type": "Fail"
+    },
+    "Buy Stock": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:eu-west-1:617039909058:function:StepFunctionsSample-HelloLambda5ddd-BuyStockLambda-0y5zy7TjxGih",
+      "Next": "Report Result"
+    },
+    "Sell Stock": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:eu-west-1:617039909058:function:StepFunctionsSample-HelloLambda5dd-SellStockLambda-NsiM1lehCBrL",
+      "Next": "Report Result"
+    },
+    "Report Result": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sns:publish",
+      "Parameters": {
+        "TopicArn": "arn:aws:sns:eu-west-1:617039909058:StepFunctionsSample-HelloLambda5dddd33d-1942-4814-afd8-20b51783dd91-ReportResultSnsTopic-1CY3XMY27NDX7",
+        "Message": {
+          "Input.$": "$"
+        }
+      },
+      "End": true
+    }
+  }
+}
