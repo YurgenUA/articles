@@ -1,6 +1,12 @@
 ### Repo with source code to my articles on medium.com
 
 <details>
+  <summary>New Workflow Studio for AWS Step Functions.</summary>
+  <p>[**workflow-studio**](workflow-studio)<br>
+  https://fenyuk.medium.com/new-workflow-studio-for-aws-step-functions-b1d3ca9a6c18</p>
+</details>
+
+<details>
   <summary>Delivery route calculation with Amazon Location Service.</summary>
   <p>[**locations-and-maps**](locations-and-maps)<br>
   https://fenyuk.medium.com/delivery-route-calculation-with-amazon-location-service-4c346f49fafd</p>
