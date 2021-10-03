@@ -13,13 +13,13 @@
 </details>
 
 <details>
-  <summary>AWS DynamoDB. Access capacity and service throttling.</summary>
-  <p>[**throttling**](throttling)<br>
-  https://medium.com/@fenyuk/aws-dynamodb-access-capacity-and-service-throttling-1ddd75b6a189</p>
-</details>
-
-<details>
   <summary>AWS Secrets Manager. Maintain your sensitive data securely.</summary>
   <p>[**secrets**](secrets)<br>
   https://medium.com/@fenyuk/aws-secrets-manager-maintain-your-sensitive-data-securely-6fb1415def6a</p>
+</details>
+
+<details>
+  <summary>AWS DynamoDB. Access capacity and service throttling.</summary>
+  <p>[**throttling**](throttling)<br>
+  https://medium.com/@fenyuk/aws-dynamodb-access-capacity-and-service-throttling-1ddd75b6a189</p>
 </details>
