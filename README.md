@@ -23,3 +23,9 @@
   <p>[**throttling**](throttling)<br>
   https://medium.com/@fenyuk/aws-dynamodb-access-capacity-and-service-throttling-1ddd75b6a189</p>
 </details>
+
+<details>
+  <summary>Typescript’s directives to ignore compiler time errors.</summary>
+  <p>[**TS ignore errors**](TS ignore errors)<br>
+  https://fenyuk.medium.com/typescripts-directives-to-ignore-compiler-time-errors-aff374d4fc59</p>
+</details>
