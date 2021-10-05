@@ -1,0 +1,25 @@
+{
+  "include": [
+    "index.ts"
+  ],
+  "compilerOptions": {
+	 "baseUrl": ".",
+    "target": "ES2019",
+    "module": "commonjs",
+    "rootDir": ".",
+    "outDir": "dist",
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "typeRoots": [
+      "@types",
+      "node_modules/@types"
+    ],
+    "types": ["node"],
+    "resolveJsonModule":true,
+    "skipLibCheck": true,
+    "esModuleInterop": true
+  }
+}

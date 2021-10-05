@@ -1,0 +1,10 @@
+import assert from 'assert';
+
+function Sum(num1: number, num2: number): number { 
+  assert(typeof num1 === "number");
+  assert(typeof num2 === "number");
+  return num1 + num2;
+}
+
+// @ts-expect-error
+console.log('1 + 1 will be:', Sum(1, 1));
