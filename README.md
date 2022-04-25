@@ -29,3 +29,10 @@
   <p>[**TS ignore errors**](TS ignore errors)<br>
   https://fenyuk.medium.com/typescripts-directives-to-ignore-compiler-time-errors-aff374d4fc59</p>
 </details>
+
+<details>
+  <summary>Helm application manager for Kubernetes. Using professional and hand-crafted charts.</summary>
+  <p>[**helm-basics**](helm-basics)<br>
+  https://fenyuk.medium.com/helm-application-manager-for-kubernetes-using-professional-and-hand-crafted-charts-cfb525350e05
+</p>
+</details>
