@@ -1,0 +1,4 @@
+app:
+  version: v2
+  env:
+    rabbitmq: amqp://supervisor:supervisor@my-rabbitmq:5672/
