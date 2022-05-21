@@ -1,0 +1,3 @@
+auth:
+  username: superuser
+  existingPasswordSecret: rabbit-secret
