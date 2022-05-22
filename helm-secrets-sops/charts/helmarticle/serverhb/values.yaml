@@ -1,4 +1,5 @@
 app:
   version: v2
-  env:
-    rabbitmq: amqp://supervisor:supervisor@my-rabbitmq:5672/
+# no more plain secrets storing (use k8s secrets resources instead)  
+#  env:
+#    rabbitmq: amqp://supervisor:supervisor@my-rabbitmq:5672/

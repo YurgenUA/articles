@@ -17,8 +17,19 @@ spec:
       - name: webapp
         image: yurgenwk/demo-server-hb:{{ .Values.app.version | default "latest"}}
         env:
+        - name: USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: heartbeat-secret
+              key: username        
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: heartbeat-secret
+              key: password        
         - name: MQ_URL
-          value: {{ .Values.app.env.rabbitmq }}
+          value: amqp://$(USERNAME):$(PASSWORD)@my-rabbitmq:5672/
+          #value: {#{ .Values.app.env.rabbitmq }#}
 ---
 apiVersion: v1
 kind: Service
@@ -32,6 +43,6 @@ spec:
   ports:
     - name: http
       port: 3000
-      nodePort: 30080
+      nodePort: 30100
 
   type: NodePort
