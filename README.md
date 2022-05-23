@@ -36,3 +36,10 @@
   https://fenyuk.medium.com/helm-application-manager-for-kubernetes-using-professional-and-hand-crafted-charts-cfb525350e05
 </p>
 </details>
+
+<details>
+  <summary>Helm for Kubernetes. Handling secrets with SOPS.</summary>
+  <p>[**helm-secrets-sops**](helm-secrets-sops)<br>
+  https://fenyuk.medium.com/helm-for-kubernetes-handling-secrets-with-sops-d8149df6eda4
+</p>
+</details>
