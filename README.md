@@ -43,3 +43,10 @@
   https://fenyuk.medium.com/helm-for-kubernetes-handling-secrets-with-sops-d8149df6eda4
 </p>
 </details>
+
+<details>
+  <summary>Lens as IDE for Kubernetes.</summary>
+  <p>[**lens-for-k8s**](lens-for-k8s)<br>
+  https://fenyuk.medium.com/lens-as-ide-for-kubernetes-5a4f7e0a0235
+</p>
+</details>
