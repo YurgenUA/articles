@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-heartbeat
+spec:
+  rules:
+    - host: heartbeats.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: heartbeat-webapp
+                port:
+                  number: 3000
