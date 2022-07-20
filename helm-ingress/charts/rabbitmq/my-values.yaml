@@ -1,0 +1,7 @@
+auth:
+  username: superuser
+  existingPasswordSecret: rabbit-secret
+
+ingress:
+  enabled: true
+  hostname: rabbitmq.heartbeats.io  
