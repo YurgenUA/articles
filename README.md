@@ -50,3 +50,10 @@
   https://fenyuk.medium.com/lens-as-ide-for-kubernetes-5a4f7e0a0235
 </p>
 </details>
+
+<details>
+  <summary>Helm for Kubernetes. Setup ingress as API gateway.</summary>
+  <p>[**helm-ingress**](helm-ingress)<br>
+  https://fenyuk.medium.com/helm-for-kubernetes-setup-ingress-as-api-gateway-64e1b309241b
+</p>
+</details>
