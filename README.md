@@ -57,3 +57,10 @@
   https://fenyuk.medium.com/helm-for-kubernetes-setup-ingress-as-api-gateway-64e1b309241b
 </p>
 </details>
+
+<details>
+  <summary>Stop editing your /etc/hosts for local development.</summary>
+  <p>[**no-hosts-edits**](no-hosts-edits)<br>
+  https://fenyuk.medium.com/stop-editing-your-etc-hosts-for-local-development-dcb2522de33d
+  </p>
+</details>
