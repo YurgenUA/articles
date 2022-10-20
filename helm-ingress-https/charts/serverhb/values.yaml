@@ -1,5 +1,5 @@
 app:
   version: v2
 tls:
-  certSecretName: my-domain-certificate-44 #my-domain-cert
+  certSecretName: my-domain-certificate
   domainName: '*.localdev.me'

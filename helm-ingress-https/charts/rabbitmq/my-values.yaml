@@ -7,4 +7,4 @@ ingress:
   hostname: rabbitmq.localdev.me
   tls: true
   extraTls:
-    - secretName: my-domain-cert
+    - secretName: my-domain-certificate
