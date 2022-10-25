@@ -64,3 +64,10 @@
   https://fenyuk.medium.com/stop-editing-your-etc-hosts-for-local-development-dcb2522de33d
   </p>
 </details>
+
+<details>
+  <summary>Helm for Kubernetes. Setup ingress with HTTPS.</summary>
+  <p>[**helm-ingress-https**](helm-ingress-https)<br>
+  https://fenyuk.medium.com/helm-for-kubernetes-setup-ingress-with-https-21462bb9365e
+  </p>
+</details>
