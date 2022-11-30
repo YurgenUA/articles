@@ -71,3 +71,10 @@
   https://fenyuk.medium.com/helm-for-kubernetes-setup-ingress-with-https-21462bb9365e
   </p>
 </details>
+
+<details>
+  <summary>Helm for Kubernetes. Handling secrets with helm-secrets plugin.</summary>
+  <p>[**helm-secrets-helm-plugin**](helm-secrets-helm-plugin)<br>
+  https://fenyuk.medium.com/helm-for-kubernetes-handling-secrets-with-helm-secrets-plugin-4e31f6f3e306
+  </p>
+</details>
