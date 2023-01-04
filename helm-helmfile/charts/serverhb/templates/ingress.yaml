@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    ginx.ingress.kubernetes.io/ssl-redirect: "true"
+  name: my-heartbeat
+spec:
+  tls:
+    - secretName: {{ .Values.tls.certSecretName }}
+      hosts:
+        - {{ .Values.tls.domainName | squote }}
+  rules:
+    - host: {{ .Values.stage }}-heartbeats.localdev.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: heartbeat-webapp
+                port:
+                  number: 3000 
