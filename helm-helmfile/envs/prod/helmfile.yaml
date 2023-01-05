@@ -1,0 +1,27 @@
+helmDefaults:
+  createNamespace: true
+
+releases:
+- name: tls-certificate
+  namespace: prod-medium
+  chart: ../../charts/tlscert
+  values:
+    - ./values/tls-certificate.yaml
+  secrets:
+    - ./values/tls-certificate.secrets.yaml
+
+- name: rabbit-mq
+  namespace: prod-medium
+  chart: ../../charts/rabbitmq
+  values:
+   - ./values/rabbit-mq.yaml
+  secrets:
+    - ./values/rabbit-mq.secrets.yaml
+
+- name: server-heartbeats
+  namespace: prod-medium
+  chart: ../../charts/serverhb
+  values:
+    - ./values/server-heartbeats.yaml
+  secrets:
+    - ./values/server-heartbeats.secrets.yaml
