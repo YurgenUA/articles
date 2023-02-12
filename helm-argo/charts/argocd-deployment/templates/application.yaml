@@ -1,0 +1,35 @@
+{{- range .Values.applications }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $.Values.destination.namespace }}-{{ .name }}
+  namespace: argo
+  labels:
+    {{- include "argocd-deployment.labels" $ | nindent 4 }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ include "argocd-deployment.fullname" $ }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ $.Values.destination.namespace | quote }}
+  source:
+    repoURL: {{ include "helper-repoURL" $ }}
+    path: {{ include "helper-repo-charts-folder" $ }}{{ .chart }}
+    targetRevision: {{ or .sourceRevision $.Values.source.revision | quote }}
+    helm:
+      releaseName: {{ .name }}
+      valueFiles:
+  {{- range .values }}
+        - "../../envs/{{ $.Values.destination.namespace }}/values/{{ . }}"
+  {{- end }}
+  {{- range .secrets }}
+        {{- $_ := set $ "secretfile" . }}
+        - "secrets+age-import-kubernetes://argo/argocd-age-secret-keys#age-key.txt?{{ include "secret-value-file-git-path" $ }}"
+  {{- end }}
+{{- end }}

@@ -1,0 +1,16 @@
+
+#nameOverride: ""
+#fullnameOverride: ""
+
+source:
+  revision: "main"
+
+destination:
+  server: "https://kubernetes.default.svc"
+  namespace: ""
+
+applications: []
+
+repo:
+  folder: helm-argo
+  name: YurgenUA/articles

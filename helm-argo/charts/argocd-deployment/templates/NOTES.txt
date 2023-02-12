@@ -1,0 +1,1 @@
+released chart "{{ include "argocd-deployment.fullname" . }}" to namespace "{{ .Release.Namespace }}"
