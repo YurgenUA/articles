@@ -1,0 +1,22 @@
+repositories:
+  - name: argocd
+    url: https://argoproj.github.io/argo-helm
+
+helmDefaults:
+  createNamespace: true
+
+releases:
+  - name: argocd
+    chart: argocd/argo-cd
+    version: 4.8.0
+    namespace: argo
+    installed: true
+    values:
+       - ./values/argocd.yaml
+       
+  - name: argocd-deployment-production
+    chart: ../../charts/argocd-deployment
+    namespace: prod-medium
+    installed: true
+    values:
+      - ./values/argocd-deployment.yaml       
