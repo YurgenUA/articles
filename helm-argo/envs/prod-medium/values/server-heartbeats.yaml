@@ -1,0 +1,6 @@
+stage: prod
+app:
+  version: v2
+tls:
+  certSecretName: my-domain-certificate
+  domainName: '*.localdev.me'
