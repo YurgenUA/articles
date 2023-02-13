@@ -3,7 +3,7 @@
 #fullnameOverride: ""
 
 source:
-  revision: "main"
+  revision: "master"
 
 destination:
   server: "https://kubernetes.default.svc"

@@ -1,11 +1,11 @@
 source:
   revision: "master"
 destination:
-  namespace: "prod-medium"
+  namespace: "dev-medium"
 applications:
 
   - name: tls-certificate
-    namespace: prod-medium
+    namespace: dev-medium
     chart: tlscert
     values:
       - tls-certificate.yaml
@@ -13,7 +13,7 @@ applications:
       - tls-certificate.secrets.yaml
 
   - name: rabbit-mq
-    namespace: prod-medium
+    namespace: dev-medium
     chart: rabbitmq
     values:
       - rabbit-mq.yaml
@@ -21,7 +21,7 @@ applications:
       - rabbit-mq.secrets.yaml
 
   - name: server-heartbeats
-    namespace: prod-medium
+    namespace: dev-medium
     chart: serverhb
     values:
       - server-heartbeats.yaml
