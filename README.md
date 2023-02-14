@@ -78,3 +78,10 @@
   https://fenyuk.medium.com/helm-for-kubernetes-handling-secrets-with-helm-secrets-plugin-4e31f6f3e306
   </p>
 </details>
+
+<details>
+  <summary>Helm for Kubernetes. Helmfile.</summary>
+  <p>[**helm-helmfile**](helm-helmfile)<br>
+  https://fenyuk.medium.com/helm-for-kubernetes-helmfile-c22d1ab5e604
+  </p>
+</details>
