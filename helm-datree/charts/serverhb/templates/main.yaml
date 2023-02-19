@@ -30,7 +30,8 @@ spec:
           - name: MQ_URL
             value: amqp://$(USERNAME):$(PASSWORD)@rabbit-mq-rabbitmq:5672/
         securityContext:
-          allowPrivilegeEscalation: false          
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
 ---
 apiVersion: v1
 kind: Service
