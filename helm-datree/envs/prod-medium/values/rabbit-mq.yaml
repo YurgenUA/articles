@@ -11,4 +11,3 @@ ingress:
 
 containerSecurityContext:
   allowPrivilegeEscalation: false
-  readOnlyRootFilesystem: true
