@@ -1,0 +1,16 @@
+
+#nameOverride: ""
+#fullnameOverride: ""
+
+source:
+  revision: "master"
+
+destination:
+  server: "https://kubernetes.default.svc"
+  namespace: ""
+
+applications: []
+
+repo:
+  folder: helm-datree
+  name: YurgenUA/articles

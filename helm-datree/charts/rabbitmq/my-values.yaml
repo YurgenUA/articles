@@ -1,0 +1,10 @@
+auth:
+  username: superuser
+  existingPasswordSecret: rabbit-secret
+
+ingress:
+  enabled: true
+  hostname: rabbitmq.localdev.me
+  tls: true
+  extraTls:
+    - secretName: my-domain-certificate

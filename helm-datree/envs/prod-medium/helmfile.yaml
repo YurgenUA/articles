@@ -1,0 +1,32 @@
+repositories:
+  - name: argocd
+    url: https://argoproj.github.io/argo-helm
+  - name: datree-webhook
+    url: https://datreeio.github.io/admission-webhook-datree
+
+helmDefaults:
+  createNamespace: true
+
+releases:
+  - name: argocd
+    chart: argocd/argo-cd
+    version: 4.8.0
+    namespace: argo
+    installed: true
+    values:
+       - ./values/argocd.yaml
+       
+  - name: argocd-deployment-production
+    chart: ../../charts/argocd-deployment
+    namespace: prod-medium
+    installed: true
+    values:
+      - ./values/argocd-deployment.yaml
+
+  - name: datree
+    chart: datree-webhook/datree-admission-webhook
+    version: 0.3.36
+    namespace: datree
+    installed: true
+    values:
+       - ./values/datree.yaml

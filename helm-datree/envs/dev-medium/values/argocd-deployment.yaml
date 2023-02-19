@@ -1,0 +1,29 @@
+source:
+  revision: "master"
+destination:
+  namespace: "dev-medium"
+applications:
+
+  - name: tls-certificate
+    namespace: dev-medium
+    chart: tlscert
+    values:
+      - tls-certificate.yaml
+    secrets:
+      - tls-certificate.secrets.yaml
+
+  - name: rabbit-mq
+    namespace: dev-medium
+    chart: rabbitmq
+    values:
+      - rabbit-mq.yaml
+    secrets:
+      - rabbit-mq.secrets.yaml
+
+  - name: server-heartbeats
+    namespace: dev-medium
+    chart: serverhb
+    values:
+      - server-heartbeats.yaml
+    secrets:
+      - server-heartbeats.secrets.yaml 
