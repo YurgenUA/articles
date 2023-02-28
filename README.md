@@ -85,3 +85,10 @@
   https://fenyuk.medium.com/helm-for-kubernetes-helmfile-c22d1ab5e604
   </p>
 </details>
+
+<details>
+  <summary>Helm for Kubernetes. GitOps with Argo CD.</summary>
+  <p>[**helm-argo**](helm-argo)<br>
+  https://fenyuk.medium.com/helm-for-kubernetes-gitops-with-argo-cd-c8f80330596
+  </p>
+</details>
