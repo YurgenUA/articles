@@ -92,3 +92,10 @@
   https://fenyuk.medium.com/helm-for-kubernetes-gitops-with-argo-cd-c8f80330596
   </p>
 </details>
+
+<details>
+  <summary>Helm for Kubernetes. Datree for keeping cluster secure and healthy.</summary>
+  <p>[**helm-datree**](helm-datree)<br>
+  https://fenyuk.medium.com/helm-for-kubernetes-datree-for-keeping-cluster-secure-and-healthy-6fbd10f0d958
+  </p>
+</details>
