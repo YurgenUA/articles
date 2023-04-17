@@ -99,3 +99,10 @@
   https://fenyuk.medium.com/helm-for-kubernetes-datree-for-keeping-cluster-secure-and-healthy-6fbd10f0d958
   </p>
 </details>
+
+<details>
+  <summary>Golang. CRUD in REST API in a generic way.</summary>
+  <p>[**go-generic-rest**](go-generic-rest)<br>
+  https://fenyuk.medium.com/golang-crud-in-rest-api-in-a-generic-way-9c395a60309e
+  </p>
+</details>
