@@ -1,0 +1,39 @@
+@host = localhost:6000
+
+// Get All Brands
+GET http://{{host}}/api/brands HTTP/1.1
+content-type: application/json
+
+###
+
+// Get Brand By ID
+GET http://{{host}}/api/brands/1 HTTP/1.1
+content-type: application/json
+
+###
+
+// Create Brand
+POST http://{{host}}/api/brands HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Dunlop",
+    "year": 1888
+}
+
+###
+
+// Update Brand
+PUT http://{{host}}/api/brands/1 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Dunlop sport",
+    "year": 1947
+}
+
+###
+
+// Delete Brand
+DELETE http://{{host}}/api/brands/1 HTTP/1.1
+content-type: application/json

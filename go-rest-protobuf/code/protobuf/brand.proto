@@ -1,0 +1,13 @@
+syntax = "proto3"; 
+package golang_protobuf_brand;
+option go_package="/golang_protobuf_brand";
+
+message ProtoBrandRepo {
+    message ProtoBrand {
+        uint64 ID = 1;
+        string Name = 2;
+        uint32 Year = 3;
+    }
+    repeated ProtoBrand brands = 1;
+}
+
