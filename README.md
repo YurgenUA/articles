@@ -106,3 +106,10 @@
   https://fenyuk.medium.com/golang-crud-in-rest-api-in-a-generic-way-9c395a60309e
   </p>
 </details>
+
+<details>
+  <summary>Golang. Start using Protobuf.</summary>
+  <p>[**go-rest-protobuf**](go-rest-protobuf)<br>
+  https://medium.com/@fenyuk/golang-start-using-protobuf-8b9f2ba032e
+  </p>
+</details>
