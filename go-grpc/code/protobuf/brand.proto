@@ -1,0 +1,29 @@
+syntax = "proto3"; 
+package golang_protobuf_brand;
+option go_package="/golang_protobuf_brand";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+
+message ProtoBrandRepo {
+    message ProtoBrand {
+        uint64 ID = 1;
+        string Name = 2;
+        uint32 Year = 3;
+    }
+    repeated ProtoBrand brands = 1;
+}
+
+message UpdateRequest {
+    google.protobuf.Int64Value ID = 1;
+    ProtoBrandRepo.ProtoBrand Brand = 2;
+}
+
+service Crud {
+	rpc Create(ProtoBrandRepo.ProtoBrand) returns (ProtoBrandRepo.ProtoBrand);
+    rpc GetList(google.protobuf.Empty) returns (stream ProtoBrandRepo.ProtoBrand);
+    rpc GetOne(google.protobuf.Int64Value) returns (ProtoBrandRepo.ProtoBrand);
+	rpc Update(UpdateRequest) returns (ProtoBrandRepo.ProtoBrand);
+	rpc Delete(google.protobuf.Int64Value) returns (google.protobuf.BoolValue);
+}
