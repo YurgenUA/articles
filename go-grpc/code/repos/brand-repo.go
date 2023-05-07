@@ -120,3 +120,15 @@ func (b *BrandRepo) loadFromFileStorage() error {
 	}
 	return nil
 }
+
+func ToProtoBrand(brand entities.Brand) *golang_protobuf_brand.ProtoBrandRepo_ProtoBrand {
+	return &golang_protobuf_brand.ProtoBrandRepo_ProtoBrand{
+		ID: uint64(brand.ID), Name: brand.Name, Year: uint32(brand.Year),
+	}
+}
+
+func ToBrand(brand *golang_protobuf_brand.ProtoBrandRepo_ProtoBrand) entities.Brand {
+	return entities.Brand{
+		ID: uint((*brand).ID), Name: (*brand).Name, Year: uint((*brand).Year),
+	}
+}
