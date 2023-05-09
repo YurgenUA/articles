@@ -113,3 +113,10 @@
   https://medium.com/@fenyuk/golang-start-using-protobuf-8b9f2ba032e
   </p>
 </details>
+
+<details>
+  <summary>Golang. CRUD with gRPC.</summary>
+  <p>[**go-grpc**](go-grpc)<br>
+  https://fenyuk.medium.com/golang-crud-with-grpc-30473817ec94
+  </p>
+</details>
