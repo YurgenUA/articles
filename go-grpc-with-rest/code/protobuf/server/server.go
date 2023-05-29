@@ -22,8 +22,9 @@ func NewCRUDServiceServer(repo *repos.GenericRepo[entities.Brand]) *CRUDServiceS
 	return &server
 }
 
-func (c CRUDServiceServer) Create(context.Context, *golang_protobuf_brand.ProtoBrandRepo_ProtoBrand) (*golang_protobuf_brand.ProtoBrandRepo_ProtoBrand, error) {
-	return &golang_protobuf_brand.ProtoBrandRepo_ProtoBrand{}, nil
+func (c CRUDServiceServer) Create(_ context.Context, message *golang_protobuf_brand.ProtoBrandRepo_ProtoBrand) (*golang_protobuf_brand.ProtoBrandRepo_ProtoBrand, error) {
+	brand := (*c.repo).Create(repos.ToBrand(message))
+	return repos.ToProtoBrand(brand), nil
 }
 
 func (c CRUDServiceServer) GetOne(_ context.Context, id *wrapperspb.Int64Value) (*golang_protobuf_brand.ProtoBrandRepo_ProtoBrand, error) {
