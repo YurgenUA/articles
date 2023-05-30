@@ -120,3 +120,10 @@
   https://fenyuk.medium.com/golang-crud-with-grpc-30473817ec94
   </p>
 </details>
+
+<details>
+  <summary>Golang. CRUD with gRPC (plus REST API transcoding).</summary>
+  <p>[**go-grpc-with-rest**](go-grpc-with-rest)<br>
+  https://fenyuk.medium.com/golang-crud-with-grpc-plus-rest-api-transcoding-80b020430bb2
+  </p>
+</details>
