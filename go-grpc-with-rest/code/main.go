@@ -1,19 +1,22 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net"
 	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
 
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/yurgenua/golang-crud-rest-api/entities"
 	"github.com/yurgenua/golang-crud-rest-api/protobuf/golang_protobuf_brand"
 	"github.com/yurgenua/golang-crud-rest-api/protobuf/server"
 	"github.com/yurgenua/golang-crud-rest-api/repos"
 
 	"google.golang.org/grpc"
-
-	"github.com/gorilla/mux"
 )
 
 func main() {
@@ -25,18 +28,28 @@ func main() {
 	// push RPC server as goroutine
 	go StartRPCServer(&brandRepo)
 
-	// Initialize the router
-	router := mux.NewRouter().StrictSlash(true)
+	// push gRPC-Gateway generated server as goroutine
+	go StartRPCGatewayServer()
 
-	RegisterBrandRoutes(router, brandRepo)
-
-	// Start the server
-	log.Println(fmt.Sprintf("Starting Server on port %s", AppConfig.Port))
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%v", AppConfig.Port), router))
+	stopChan := make(chan os.Signal, 1)
+	signal.Notify(stopChan, os.Interrupt, syscall.SIGTERM)
+	<-stopChan
+	log.Println("Termination signal received. Exiting...")
 }
 
-func RegisterBrandRoutes(router *mux.Router, brandRepo repos.GenericRepo[entities.Brand]) {
-	NewGenericRouter[entities.Brand, *repos.BrandRepo]("/api/brands", router, &brandRepo)
+func StartRPCGatewayServer() {
+	gwmux := runtime.NewServeMux()
+	err := golang_protobuf_brand.RegisterCrudHandlerFromEndpoint(context.Background(), gwmux, ":"+AppConfig.RPCPort, []grpc.DialOption{grpc.WithInsecure()})
+	if err != nil {
+		log.Fatal(err)
+	}
+	gwServer := &http.Server{
+		Addr:    ":" + AppConfig.Port,
+		Handler: gwmux,
+	}
+
+	log.Printf("Serving gRPC-Gateway on http://localhost:%s\n", AppConfig.Port)
+	log.Fatalln(gwServer.ListenAndServe())
 }
 
 func StartRPCServer(brandRepo *repos.GenericRepo[entities.Brand]) {
