@@ -1,6 +1,6 @@
 syntax = "proto3"; 
-package golang_protobuf_brand;
-option go_package="/golang_protobuf_brand";
+package crud_brand;
+option go_package="/crud_brand";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
@@ -8,44 +8,68 @@ import "google/api/annotations.proto";
 import "google/api/field_behavior.proto";
 
 
-message ProtoBrandRepo {
-    message ProtoBrand {
-        uint64 ID = 1;
-        string Name = 2 [(google.api.field_behavior) = REQUIRED, json_name = "name"];
-        uint32 Year = 3 [(google.api.field_behavior) = REQUIRED, json_name = "year"];
-    }
-    repeated ProtoBrand brands = 1;
+// Brand main entity
+message Brand {
+    uint64 id = 1;
+    string name = 2 [ (google.api.field_behavior) = REQUIRED];
+    uint32 year = 3 [ (google.api.field_behavior) = REQUIRED];
+}
+
+// Repository file persistance message format
+message BrandRepo {
+    repeated Brand brands = 1;
+}
+
+// Following messages are CRUD request/responses
+message CreateRequest {
+    Brand brand = 1;
+}
+
+message CreateResponse {
+    Brand brand = 1;
+}
+
+message GetListResponse {
+    repeated Brand brands = 1;
+}
+
+message GetOneResponse {
+    Brand brand = 1;
 }
 
 message UpdateRequest {
-    google.protobuf.Int64Value ID = 1;
-    ProtoBrandRepo.ProtoBrand Brand = 2;
+    google.protobuf.Int64Value id = 1;
+    Brand brand = 2;
 }
 
-service Crud {
-	rpc Create(ProtoBrandRepo.ProtoBrand) returns (ProtoBrandRepo.ProtoBrand) {
+message UpdateResponse {
+    Brand brand = 1;
+}
+
+service CrudService {
+	rpc Create(CreateRequest) returns (CreateResponse) {
         option (google.api.http) = {
             post: "/api/brands"
             body: "*"
         };
     };
-    rpc GetList(google.protobuf.Empty) returns (stream ProtoBrandRepo.ProtoBrand) {
+    rpc GetList(google.protobuf.Empty) returns (GetListResponse) {
         option (google.api.http) = {
             get: "/api/brands"
         };        
     };
-    rpc GetOne(google.protobuf.Int64Value) returns (ProtoBrandRepo.ProtoBrand) {
+    rpc GetOne(google.protobuf.Int64Value) returns (GetOneResponse) {
         option (google.api.http) = {
             get: "/api/brands/{value}"
         };        
     };
-	rpc Update(UpdateRequest) returns (ProtoBrandRepo.ProtoBrand) {
+	rpc Update(UpdateRequest) returns (UpdateResponse) {
         option (google.api.http) = {
-            put: "/api/brands/{ID}"
+            put: "/api/brands/{id}"
             body: "*"      
         };
     };
-	rpc Delete(google.protobuf.Int64Value) returns (google.protobuf.BoolValue) {
+	rpc Delete(google.protobuf.Int64Value) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             delete: "/api/brands/{value}"
         };        

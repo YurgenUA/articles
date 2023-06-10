@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/yurgenua/golang-crud-rest-api/entities"
-	"github.com/yurgenua/golang-crud-rest-api/protobuf/golang_protobuf_brand"
+	"github.com/yurgenua/golang-crud-rest-api/protobuf/crud_brand"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -67,14 +67,14 @@ func (b *BrandRepo) DeleteOne(id uint) (bool, error) {
 
 func (b *BrandRepo) saveToFileStorage() error {
 
-	brandsMessage := &golang_protobuf_brand.ProtoBrandRepo{
-		Brands: []*golang_protobuf_brand.ProtoBrandRepo_ProtoBrand{},
+	brandsMessage := &crud_brand.BrandRepo{
+		Brands: []*crud_brand.Brand{},
 	}
 
 	for _, b := range b.brands {
 		brandsMessage.Brands = append(brandsMessage.Brands,
-			&golang_protobuf_brand.ProtoBrandRepo_ProtoBrand{
-				ID: uint64(b.ID), Name: b.Name, Year: uint32(b.Year),
+			&crud_brand.Brand{
+				Id: uint64(b.ID), Name: b.Name, Year: uint32(b.Year),
 			})
 
 	}
@@ -105,7 +105,7 @@ func (b *BrandRepo) loadFromFileStorage() error {
 		return fmt.Errorf("cannot read binary data from file: %w", err)
 	}
 
-	var brandsMessage golang_protobuf_brand.ProtoBrandRepo
+	var brandsMessage crud_brand.BrandRepo
 	err = proto.Unmarshal(data, &brandsMessage)
 	if err != nil {
 		return fmt.Errorf("cannot unmarshal binary data to protobuf: %w", err)
@@ -114,21 +114,21 @@ func (b *BrandRepo) loadFromFileStorage() error {
 	for _, brand := range brandsMessage.Brands {
 		b.brands = append(b.brands,
 			entities.Brand{
-				ID: uint(brand.ID), Name: brand.Name, Year: uint(brand.Year),
+				ID: uint(brand.Id), Name: brand.Name, Year: uint(brand.Year),
 			})
 
 	}
 	return nil
 }
 
-func ToProtoBrand(brand entities.Brand) *golang_protobuf_brand.ProtoBrandRepo_ProtoBrand {
-	return &golang_protobuf_brand.ProtoBrandRepo_ProtoBrand{
-		ID: uint64(brand.ID), Name: brand.Name, Year: uint32(brand.Year),
+func ToProtoBrand(brand entities.Brand) *crud_brand.Brand {
+	return &crud_brand.Brand{
+		Id: uint64(brand.ID), Name: brand.Name, Year: uint32(brand.Year),
 	}
 }
 
-func ToBrand(brand *golang_protobuf_brand.ProtoBrandRepo_ProtoBrand) entities.Brand {
+func ToBrand(brand *crud_brand.Brand) entities.Brand {
 	return entities.Brand{
-		ID: uint((*brand).ID), Name: (*brand).Name, Year: uint((*brand).Year),
+		ID: uint((*brand).Id), Name: (*brand).Name, Year: uint((*brand).Year),
 	}
 }

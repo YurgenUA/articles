@@ -12,7 +12,7 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/yurgenua/golang-crud-rest-api/entities"
-	"github.com/yurgenua/golang-crud-rest-api/protobuf/golang_protobuf_brand"
+	"github.com/yurgenua/golang-crud-rest-api/protobuf/crud_brand"
 	"github.com/yurgenua/golang-crud-rest-api/protobuf/server"
 	"github.com/yurgenua/golang-crud-rest-api/repos"
 
@@ -39,7 +39,7 @@ func main() {
 
 func StartRPCGatewayServer() {
 	gwmux := runtime.NewServeMux()
-	err := golang_protobuf_brand.RegisterCrudHandlerFromEndpoint(context.Background(), gwmux, ":"+AppConfig.RPCPort, []grpc.DialOption{grpc.WithInsecure()})
+	err := crud_brand.RegisterCrudServiceHandlerFromEndpoint(context.Background(), gwmux, ":"+AppConfig.RPCPort, []grpc.DialOption{grpc.WithInsecure()})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -59,7 +59,7 @@ func StartRPCServer(brandRepo *repos.GenericRepo[entities.Brand]) {
 	}
 
 	s := grpc.NewServer()
-	golang_protobuf_brand.RegisterCrudServer(s, server.NewCRUDServiceServer(brandRepo))
+	crud_brand.RegisterCrudServiceServer(s, server.NewCRUDServiceServer(brandRepo))
 
 	log.Printf("gRPC server listening on port %v\n", AppConfig.RPCPort)
 	if err := s.Serve(lis); err != nil {

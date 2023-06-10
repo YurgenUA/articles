@@ -17,18 +17,20 @@ POST http://{{host}}/api/brands HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Slazenger",
-    "year": 1881
+   "brand": {    
+        "name": "Slazenger55",
+        "year": 1881
+   }
 }
 
 ###
 
 // Update Brand
-PUT http://{{host}}/api/brands/3 HTTP/1.1
+PUT http://{{host}}/api/brands/1 HTTP/1.1
 content-type: application/json
 
 {
-   "Brand": {
+   "brand": {
     "name": "Dunlop sport",
     "year": 1947
    }
