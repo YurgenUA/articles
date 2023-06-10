@@ -11,7 +11,6 @@ import (
 	"syscall"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"github.com/yurgenua/golang-crud-rest-api/entities"
 	"github.com/yurgenua/golang-crud-rest-api/protobuf/crud_brand"
 	"github.com/yurgenua/golang-crud-rest-api/protobuf/server"
 	"github.com/yurgenua/golang-crud-rest-api/repos"
@@ -23,7 +22,7 @@ func main() {
 	LoadAppConfig()
 
 	// Create Brand Repository
-	var brandRepo repos.GenericRepo[entities.Brand] = repos.NewBrandRepo()
+	var brandRepo repos.GenericRepo[crud_brand.Brand] = repos.NewBrandRepo()
 
 	// push RPC server as goroutine
 	go StartRPCServer(&brandRepo)
@@ -52,7 +51,7 @@ func StartRPCGatewayServer() {
 	log.Fatalln(gwServer.ListenAndServe())
 }
 
-func StartRPCServer(brandRepo *repos.GenericRepo[entities.Brand]) {
+func StartRPCServer(brandRepo *repos.GenericRepo[crud_brand.Brand]) {
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%s", AppConfig.RPCPort))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
