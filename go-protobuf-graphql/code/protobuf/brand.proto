@@ -6,6 +6,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 import "google/api/annotations.proto";
 import "google/api/field_behavior.proto";
+import "graphql/graphql.proto";
 
 
 // Brand main entity
@@ -47,31 +48,56 @@ message UpdateResponse {
 }
 
 service CrudService {
+    option (graphql.service) = {
+        host: "localhost:6001"
+        insecure: true
+    };
+
 	rpc Create(CreateRequest) returns (CreateResponse) {
         option (google.api.http) = {
             post: "/api/brands"
             body: "*"
         };
+        option (graphql.schema) = {
+            type: MUTATION
+            name: "Create"
+        };             
     };
     rpc GetList(google.protobuf.Empty) returns (GetListResponse) {
         option (google.api.http) = {
             get: "/api/brands"
-        };        
+        };
+        option (graphql.schema) = {
+            type: QUERY
+            name: "GetList"
+        };             
     };
     rpc GetOne(google.protobuf.Int64Value) returns (GetOneResponse) {
         option (google.api.http) = {
             get: "/api/brands/{value}"
-        };        
+        };
+        option (graphql.schema) = {
+            type: QUERY
+            name: "GetOne"
+        };             
     };
 	rpc Update(UpdateRequest) returns (UpdateResponse) {
         option (google.api.http) = {
             put: "/api/brands/{id}"
             body: "*"      
         };
+        option (graphql.schema) = {
+            type: MUTATION
+            name: "Update"
+        };             
     };
 	rpc Delete(google.protobuf.Int64Value) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             delete: "/api/brands/{value}"
         };        
+        option (graphql.schema) = {
+            type: MUTATION
+            name: "Delete"
+        };             
     };
 }

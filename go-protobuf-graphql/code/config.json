@@ -1,4 +1,5 @@
 {
     "port": 6000,
-    "rpcport": 6001
+    "rpcport": 6001,
+    "graphqlport": 6002
 }

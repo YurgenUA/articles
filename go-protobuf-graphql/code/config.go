@@ -7,8 +7,9 @@ import (
 )
 
 type Config struct {
-	Port    string `mapstructure:"port"`
-	RPCPort string `mapstructure:"rpcport"`
+	Port        string `mapstructure:"port"`
+	RPCPort     string `mapstructure:"rpcport"`
+	GraphqlPort string `mapstructure:"graphqlport"`
 }
 
 var AppConfig *Config

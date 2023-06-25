@@ -15,6 +15,8 @@ import (
 	"github.com/yurgenua/golang-crud-rest-api/protobuf/server"
 	"github.com/yurgenua/golang-crud-rest-api/repos"
 
+	graphql_runtime "github.com/ysugimoto/grpc-graphql-gateway/runtime"
+
 	"google.golang.org/grpc"
 )
 
@@ -30,10 +32,24 @@ func main() {
 	// push gRPC-Gateway generated server as goroutine
 	go StartRPCGatewayServer()
 
+	// push gRPC-GrsaphQL generated server as goroutine
+	go StartRPCGraphQLServer()
+
 	stopChan := make(chan os.Signal, 1)
 	signal.Notify(stopChan, os.Interrupt, syscall.SIGTERM)
 	<-stopChan
 	log.Println("Termination signal received. Exiting...")
+}
+
+func StartRPCGraphQLServer() {
+	mux := graphql_runtime.NewServeMux()
+	err := crud_brand.RegisterCrudServiceGraphql(mux)
+	if err != nil {
+		log.Fatal(err)
+	}
+	http.Handle("/graphql", mux)
+	log.Printf("Serving gRPC-GraphQL on http://localhost:%s\n", AppConfig.GraphqlPort)
+	log.Fatalln(http.ListenAndServe(":"+AppConfig.GraphqlPort, nil))
 }
 
 func StartRPCGatewayServer() {
@@ -60,7 +76,7 @@ func StartRPCServer(brandRepo *repos.GenericRepo[crud_brand.Brand]) {
 	s := grpc.NewServer()
 	crud_brand.RegisterCrudServiceServer(s, server.NewCRUDServiceServer(brandRepo))
 
-	log.Printf("gRPC server listening on port %v\n", AppConfig.RPCPort)
+	log.Printf("Serving gRPC on http://localhost:%s\n", AppConfig.RPCPort)
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
