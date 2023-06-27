@@ -127,3 +127,10 @@
   https://fenyuk.medium.com/golang-crud-with-grpc-plus-rest-api-transcoding-80b020430bb2
   </p>
 </details>
+
+<details>
+  <summary>Golang. CRUD with gRPC (plus GraphQL transcoding).</summary>
+  <p>[**go-protobuf-graphql**](go-protobuf-graphql)<br>
+  https://fenyuk.medium.com/golang-crud-with-grpc-plus-graphql-transcoding-112467bd9087
+  </p>
+</details>
