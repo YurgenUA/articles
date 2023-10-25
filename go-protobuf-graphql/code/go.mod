@@ -9,15 +9,13 @@ require (
 	github.com/spf13/viper v1.16.0
 	github.com/ysugimoto/grpc-graphql-gateway v0.22.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20230530153820-e85fd2cbaebc
-	google.golang.org/grpc v1.55.0
+	google.golang.org/grpc v1.56.3
 	google.golang.org/protobuf v1.30.0
 )
 
 require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
-	github.com/gorilla/mux v1.8.0 // indirect
-	github.com/grpc-ecosystem/grpc-gateway v1.16.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/iancoleman/strcase v0.2.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
