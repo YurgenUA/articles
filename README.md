@@ -134,3 +134,10 @@
   https://fenyuk.medium.com/golang-crud-with-grpc-plus-graphql-transcoding-112467bd9087
   </p>
 </details>
+
+<details>
+  <summary>Golang. Shaping web-service memory consumption.</summary>
+  <p>[**go-shaping-memory**](go-shaping-memory)<br>
+  https://fenyuk.medium.com/golang-shaping-web-service-memory-consumption-51902fff7a50
+  </p>
+</details>
