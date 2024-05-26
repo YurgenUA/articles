@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: mem-cpu-demo
+  namespace: ns1
+spec:
+  hard:
+    requests.cpu: "6"
+    requests.memory: 13Gi
+    limits.cpu: "6"
+    limits.memory: 13Gi

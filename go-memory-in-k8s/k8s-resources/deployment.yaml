@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golang-demo-deployment
+  namespace: ns1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: golang-demo
+  template:
+    metadata:
+      labels:
+        app: golang-demo
+    spec:
+      containers:
+      - name: demo-server-hashing
+        image: yurgenwk/demo-server-hashing:v2.0.0
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 6
+            memory: 12000Mi
+        env:
+        #- name: GOGC
+        #  value: "off"
+        #- name: GOMEMLIMIT
+        #  value: "10800MiB"
