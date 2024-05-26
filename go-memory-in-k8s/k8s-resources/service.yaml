@@ -4,16 +4,6 @@ metadata:
   name: golang-demo-service
   namespace: ns1
   annotations:
-    #service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: "8080"
-    #service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: "tcp"
-    #service.beta.kubernetes.io/do-loadbalancer-healthcheck-check-interval-seconds: "3"
-    #service.beta.kubernetes.io/do-loadbalancer-healthcheck-response-timeout-seconds: "4"
-    #service.beta.kubernetes.io/do-loadbalancer-healthcheck-unhealthy-threshold: "3"
-    #service.beta.kubernetes.io/do-loadbalancer-healthcheck-healthy-threshold: "5"
-
-    #service.beta.kubernetes.io/do-loadbalancer-size-unit: "3"
-    #service.beta.kubernetes.io/do-loadbalancer-allow-rules: "ip:0.0.0.0"
-    #service.beta.kubernetes.io/do-loadbalancer-http-ports: "80"
 spec:
   type: LoadBalancer
   selector:
