@@ -141,3 +141,10 @@
   https://fenyuk.medium.com/golang-shaping-web-service-memory-consumption-51902fff7a50
   </p>
 </details>
+
+<details>
+  <summary>Golang. Memory limits for running in Kubernetes.</summary>
+  <p>[**go-memory-in-k8s**](go-memory-in-k8s)<br>
+  https://fenyuk.medium.com/golang-memory-limits-for-running-in-kubernetes-87835cfd2518
+  </p>
+</details>
