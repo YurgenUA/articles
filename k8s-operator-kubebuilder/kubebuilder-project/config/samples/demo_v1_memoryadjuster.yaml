@@ -1,0 +1,9 @@
+apiVersion: demo.operator.k8s.yfenyuk.io/v1
+kind: MemoryAdjuster
+metadata:
+  labels:
+    app.kubernetes.io/name: kubebuilder-project
+    app.kubernetes.io/managed-by: kustomize
+  name: memoryadjuster-sample
+spec:
+  # TODO(user): Add fields here
