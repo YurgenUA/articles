@@ -148,3 +148,10 @@
   https://fenyuk.medium.com/golang-memory-limits-for-running-in-kubernetes-87835cfd2518
   </p>
 </details>
+
+<details>
+  <summary>Kubernetes Operator. Create the one with Kubebuilder.</summary>
+  <p>[**k8s-operator-kubebuilder**](k8s-operator-kubebuilder)<br>
+  https://fenyuk.medium.com/kubernetes-operator-create-the-one-with-kubebuilder-5d1ac240d0d4
+  </p>
+</details>
