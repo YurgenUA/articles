@@ -155,3 +155,10 @@
   https://fenyuk.medium.com/kubernetes-operator-create-the-one-with-kubebuilder-5d1ac240d0d4
   </p>
 </details>
+
+<details>
+  <summary>Kubernetes observability with OpenTelemetry and Jaeger.</summary>
+  <p>[**k8s-observability**](k8s-observability)<br>
+  https://fenyuk.medium.com/kubernetes-observability-with-opentelemetry-and-jaeger-8e072b7a4846
+  </p>
+</details>
