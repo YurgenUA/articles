@@ -162,3 +162,10 @@
   https://fenyuk.medium.com/kubernetes-observability-with-opentelemetry-and-jaeger-8e072b7a4846
   </p>
 </details>
+
+<details>
+  <summary>Building a Kubernetes Controller with Kubebuilder.</summary>
+  <p>[**k8s-k8-operator-kubebuilder-clientquota**](k8-operator-kubebuilder-clientquota)<br>
+  https://fenyuk.medium.com/building-a-kubernetes-controller-with-kubebuilder-591f58056718
+  </p>
+</details>
