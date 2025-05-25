@@ -1,0 +1,20 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: pod-validator.k8s.io
+webhooks:
+  - name: pod-validator.k8s.io
+    clientConfig:
+      service:
+        name: webhook-service
+        namespace: system
+        path: /validate-v1-pod
+      caBundle: Cg==  # placeholder, cert-manager injects the actual cert
+    rules:
+      - operations: ["CREATE"]
+        apiGroups: [""]
+        apiVersions: ["v1"]
+        resources: ["pods"]
+    admissionReviewVersions: ["v1"]
+    sideEffects: None
+    timeoutSeconds: 2

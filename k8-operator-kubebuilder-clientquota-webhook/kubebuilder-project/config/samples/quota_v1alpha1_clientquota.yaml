@@ -2,7 +2,6 @@ apiVersion: quota.operator.k8s.yfenyuk.io/v1alpha1
 kind: ClientQuota
 metadata:
   name: client-quota
-  key: value
 spec:
   namespace: playground
   clients:
