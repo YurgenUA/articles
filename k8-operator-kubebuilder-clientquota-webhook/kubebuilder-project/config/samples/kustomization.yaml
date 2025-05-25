@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- quota_v1alpha1_clientquota.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples
