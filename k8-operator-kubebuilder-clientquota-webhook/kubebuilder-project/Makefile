@@ -110,6 +110,23 @@ docker-build: ## Build docker image with the manager.
 docker-push: ## Push docker image with the manager.
 	$(CONTAINER_TOOL) push ${IMG}
 
+.PHONY: transfer-to-kind
+transfer-to-kind:
+	IMG=clientquota:latest 
+	@echo "Prepare k8s deployment..."
+	make manifests
+	@echo "Building docker image..."
+	make docker-build
+	@echo "Loading image into kind cluster..."
+	@$(KIND) load docker-image ${IMG}
+	make deploy
+	@echo "Waiting for webhook service to be ready..."
+	@until $(KUBECTL) wait --for=condition=ready pod -l control-plane=controller-manager -n kube-client-quota2-system --timeout=10s; do echo "Waiting..."; sleep 2; done
+
+	$(KUBECTL) create namespace playground
+	$(KUBECTL) apply -n playground -f config/samples/quota_v1alpha1_clientquota.yaml
+
+
 # PLATFORMS defines the target platforms for the manager image be built to provide support to multiple
 # architectures. (i.e. make docker-buildx IMG=myregistry/mypoperator:0.0.1). To use this option you need to:
 # - be able to use docker buildx. More info: https://docs.docker.com/build/buildx/

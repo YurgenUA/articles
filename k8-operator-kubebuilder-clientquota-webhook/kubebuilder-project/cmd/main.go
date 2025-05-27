@@ -216,6 +216,16 @@ func main() {
 			setupLog.Error(err, "unable to create webhook", "webhook", "ClientQuota")
 			os.Exit(1)
 		}
+
+		// Register admission webhook handler
+		mgr.GetWebhookServer().Register("/validate-v1-pod", &webhook.Admission{
+			Handler: &webhookquotav1alpha1.PodValidator{
+				Client:          mgr.GetClient(),
+				CfgMapNamespace: "playground",
+				CfgMapName:      "client-quotas",
+			},
+		})
+
 	}
 	// +kubebuilder:scaffold:builder
 

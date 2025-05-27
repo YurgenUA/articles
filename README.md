@@ -169,3 +169,10 @@
   https://fenyuk.medium.com/building-a-kubernetes-controller-with-kubebuilder-591f58056718
   </p>
 </details>
+
+<details>
+  <summary>Kubernetes Operator. Add Admission webhook to existing Controller.</summary>
+  <p>[**k8-operator-kubebuilder-clientquota-webhook**](k8-operator-kubebuilder-clientquota-webhook)<br>
+  https://fenyuk.medium.com/kubernetes-operator-add-admission-webhook-to-existing-controller-b5676a8c70c4
+  </p>
+</details>
