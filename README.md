@@ -176,3 +176,10 @@
   https://fenyuk.medium.com/kubernetes-operator-add-admission-webhook-to-existing-controller-b5676a8c70c4
   </p>
 </details>
+
+<details>
+  <summary>TypeScript: Using Typia for Runtime Validation in a Nest.js API.</summary>
+  <p>[**ts-typia**](ts-typia)<br>
+  https://medium.com/@fenyuk/typescript-using-typia-for-runtime-validation-in-a-nest-js-api-57e017e1a64e
+  </p>
+</details>
