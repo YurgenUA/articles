@@ -183,3 +183,10 @@
   https://medium.com/@fenyuk/typescript-using-typia-for-runtime-validation-in-a-nest-js-api-57e017e1a64e
   </p>
 </details>
+
+<details>
+  <summary>Kubernetes Authentication. OIDC with Keycloak.</summary>
+  <p>[**k8s-oidc-keycloak**](k8s-oidc-keycloak)<br>
+  https://fenyuk.medium.com/kubernetes-authentication-oidc-with-keycloak-47c4d02133e2
+  </p>
+</details>
