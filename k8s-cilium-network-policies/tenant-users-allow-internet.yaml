@@ -1,0 +1,21 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: allow-egress-world
+  namespace: tenant-user1
+spec:
+  endpointSelector: {}
+  egress:
+    - toEntities:
+        - world
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: allow-egress-world
+  namespace: tenant-user2
+spec:
+  endpointSelector: {}
+  egress:
+    - toEntities:
+        - world

@@ -1,0 +1,94 @@
+# tenant-user1: default deny all ingress/egress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny
+  namespace: tenant-user1
+spec:
+  podSelector: {}
+  policyTypes: ['Ingress', 'Egress']
+---
+# tenant-user1: allow traffic within namespace
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-same-namespace
+  namespace: tenant-user1
+spec:
+  podSelector: {}
+  policyTypes: ['Ingress', 'Egress']
+  ingress:
+    - from:
+        - podSelector: {}
+  egress:
+    - to:
+        - podSelector: {}
+---
+# tenant-user1: allow DNS to CoreDNS
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-dns
+  namespace: tenant-user1
+spec:
+  podSelector: {}
+  policyTypes: ['Egress']
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports:
+        - { protocol: UDP, port: 53 }
+        - { protocol: TCP, port: 53 }
+
+---
+# tenant-user2: default deny all ingress/egress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny
+  namespace: tenant-user2
+spec:
+  podSelector: {}
+  policyTypes: ['Ingress', 'Egress']
+---
+# tenant-user2: allow traffic within namespace
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-same-namespace
+  namespace: tenant-user2
+spec:
+  podSelector: {}
+  policyTypes: ['Ingress', 'Egress']
+  ingress:
+    - from:
+        - podSelector: {}
+  egress:
+    - to:
+        - podSelector: {}
+---
+# tenant-user2: allow DNS to CoreDNS
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-dns
+  namespace: tenant-user2
+spec:
+  podSelector: {}
+  policyTypes: ['Egress']
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports:
+        - { protocol: UDP, port: 53 }
+        - { protocol: TCP, port: 53 }

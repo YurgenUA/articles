@@ -1,0 +1,24 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+networking:
+  disableDefaultCNI: true
+
+nodes:
+  - role: control-plane
+    extraMounts:
+      - hostPath: ./keycloak-certs/rootCA.pem
+        containerPath: /etc/kubernetes/pki/keycloak-rootCA.pem
+  - role: worker
+
+kubeadmConfigPatches:
+  - |
+    kind: ClusterConfiguration
+    apiServer:
+      extraArgs:
+        oidc-issuer-url: https://host.docker.internal:8443/realms/k8s
+        oidc-client-id: kubernetes
+        oidc-username-claim: preferred_username
+        oidc-groups-claim: groups
+        oidc-groups-prefix: "kc:"
+        oidc-ca-file: /etc/kubernetes/pki/keycloak-rootCA.pem
