@@ -190,3 +190,9 @@
   https://fenyuk.medium.com/kubernetes-authentication-oidc-with-keycloak-47c4d02133e2
   </p>
 </details>
+<details>
+  <summary>Kubernetes. Use Cilium to isolate tenants’ Namespaces.</summary>
+  <p>[**k8s-cilium-network-policies**](k8s-cilium-network-policies)<br>
+  https://medium.com/@fenyuk/kubernetes-use-cilium-to-isolate-tenants-namespaces-52eb5e877459
+  </p>
+</details>
