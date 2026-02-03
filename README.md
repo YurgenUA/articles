@@ -196,3 +196,9 @@
   https://medium.com/@fenyuk/kubernetes-use-cilium-to-isolate-tenants-namespaces-52eb5e877459
   </p>
 </details>
+<details>
+  <summary>Amazon Bedrock Agents in Practice: Using Strands and Custom Tools.</summary>
+  <p>[**aws-bedrock-strands**](aws-bedrock-strands)<br>
+  https://medium.com/@fenyuk/amazon-bedrock-agents-in-practice-using-strands-and-custom-tools-4ca0490ae200
+  </p>
+</details>
