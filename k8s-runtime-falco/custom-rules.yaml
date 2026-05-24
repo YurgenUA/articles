@@ -1,0 +1,17 @@
+- list: package_mgmt_binaries
+  items: [apk, apt, apt-get, yum, dnf, rpm]
+
+- macro: package_mgmt_procs
+  condition: proc.name in (package_mgmt_binaries)
+
+- rule: Package Management Launched in Container
+  desc: Detects package manager usage inside a running container
+  condition: spawned_process and container and package_mgmt_procs
+  output: >
+    Package manager launched in container
+    (user=%user.name command=%proc.cmdline
+    container=%container.name
+    image=%container.image.repository:%container.image.tag
+    namespace=%k8s.ns.name pod=%k8s.pod.name)
+  priority: WARNING
+  tags: [container, process, mitre_persistence]
