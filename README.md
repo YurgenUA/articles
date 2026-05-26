@@ -202,3 +202,9 @@
   https://medium.com/@fenyuk/amazon-bedrock-agents-in-practice-using-strands-and-custom-tools-4ca0490ae200
   </p>
 </details>
+<details>
+  <summary>Kubernetes. Runtime Security with Falco.</summary>
+  <p>[**k8s-runtime-falco**](k8s-runtime-falco)<br>
+  https://medium.com/@fenyuk/kubernetes-runtime-security-with-falco-fc2cd480840a
+  </p>
+</details>
